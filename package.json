@@ -1,0 +1,46 @@
+{
+  "name": "dsh-unrestricted",
+  "version": "1.0.0",
+  "description": "Break-armor (unrestricted local execution mode) packaged as a DeepSeek Harness skill: contract text, SKILL.md generator, installer, and optional always-on AGENTS.md fusion.",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/skill.js",
+  "bin": {
+    "dsh-unrestricted": "./src/cli.js"
+  },
+  "exports": {
+    ".": "./src/skill.js",
+    "./skill": "./src/skill.js",
+    "./rules": "./src/rules.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "SKILL.md",
+    "contract.md",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "build": "node src/cli.js build",
+    "postinstall": "node src/cli.js build",
+    "test": "node --test tests/*.spec.mjs",
+    "status": "node src/cli.js status"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "skill",
+    "unrestricted",
+    "prompt",
+    "agents-md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kiannal/dsh-unrestricted.git"
+  }
+}
