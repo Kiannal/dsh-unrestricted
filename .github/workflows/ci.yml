@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['18.17', '20', '22']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: build skill from source
+        run: node src/cli.js build
+      - name: generated files must match source
+        run: git diff --exit-code SKILL.md contract.md
+      - name: unit tests
+        run: node --test tests/*.spec.mjs
+      - name: status
+        run: node src/cli.js status
